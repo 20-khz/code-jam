@@ -6,7 +6,7 @@ class SoundEmitter
   SoundEmitter()
   {
     x = random(width);
-    y = random(width);
+    y = random(height);
     r = 30;
   }
   
