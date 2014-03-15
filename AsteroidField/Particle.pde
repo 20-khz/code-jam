@@ -5,6 +5,7 @@ class Particle
   float ax, ay;
   float mass; 
   float r;
+  float angle, dangle;
   
   ParticlePoint[] points;
 
@@ -19,6 +20,9 @@ class Particle
     vy = r_speed * sin(r_angle);
     ax = ay = 0.0; 
     r = random(2, 5);
+    
+    angle = random(TAU);
+    dangle = randomGaussian() / 3;
     
     // Build the particle co-ordinates
     createParticle();
@@ -50,12 +54,18 @@ class Particle
     stroke(255);
     noFill();
     
+    pushMatrix();
+    translate(x, y);
+    rotate(angle);
     beginShape();
     for(int i = 0; i < points.length; i++) {
-      vertex(points[i].x + this.x, points[i].y + this.y);
+      vertex(points[i].x, points[i].y);
     }
-    endShape(CLOSE);   
+    endShape(CLOSE);
+    popMatrix();   
     //ellipse(x, y, r, r);
+    
+    angle += dangle;
   }
 
   void move(float dt) {
