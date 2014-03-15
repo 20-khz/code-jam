@@ -20,13 +20,7 @@ class Sonification {
       for (int j=0; j<s.size(); j++) {
         SoundEmitter se = s.getEmitter(j);
         float d = dist(prt.x, prt.y, se.x, se.y);
-        if (d < se.r) {
-          // test code
-          fill(#FF0000);
-          ellipse(se.x, se.y, 10, 10);
-          noFill();
-
-
+        if (d < se.r) {         
           OscMessage msg = new OscMessage("/playParticle");
           msg.add(prt.id);
           msg.add(0); // angle
