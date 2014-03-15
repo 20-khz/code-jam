@@ -42,4 +42,11 @@ OSCdef('playParticle', {
     var emitterId = msg[5];
     q.particles[particleId].set(\gate, 1, \ang, ang, \dist, dist, \velo, velo, \baseFrq, emitterId.midicps + 40);
 }, "/playParticle");
+
+// OSC /quiet
+OSCdef('quiet', {
+    // make synths quiet without deleting them
+    q.particles.do({ |i| i.set(\dist, 1); });
+}, "/quiet");
 )
+

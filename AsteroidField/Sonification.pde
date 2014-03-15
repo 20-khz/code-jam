@@ -48,5 +48,9 @@ class Sonification {
     msg.add(particleId);
     osc.send(msg, supercollider);
   }
+  void quiet() {
+    OscMessage msg = new OscMessage("/quiet");
+    osc.send(msg, supercollider);
+  }
 }
 
