@@ -10,32 +10,41 @@ class ParticleCollection {
     p.remove(which);
   }
 
-  void add_emitter_force(SoundEmitter emi) {
-    float force_constant = 0.1;
-    float ex, ey, er;
-    ex = emi.x;
-    ey = emi.y;
-    er = emi.r;
-    for (int i=0; i<p.size(); i++) {
-      Particle prt = p.get(i);
-      float fx, fy, frad, combined_radius, dist2, dist2scaled, dx, dy, dr;
+  void add_emitter_force(SoundEmittorCollection sec) {
+    if (sec.size()>0) {
+      for (int qx=-1; qx<=1; qx=qx+1) {
+        for (int qy=-1; qy<=1; qy=qy+1) {
+          for (int j=0; j<sec.size(); j++) {
+            SoundEmitter emi = sec.getEmitter(j);
+            float force_constant = 0.1;
+            float ex, ey, er;
+            ex = emi.x + width*qx;
+            ey = emi.y + height*qy;
+            er = emi.r;
+            for (int i=0; i<p.size(); i++) {
+              Particle prt = p.get(i);
+              float fx, fy, frad, combined_radius, dist2, dist2scaled, dx, dy, dr;
 
-      combined_radius = 3.0*(er + prt.r);
-      dx = prt.x - ex;
-      dy = prt.y - ey;
-      
-      dist2 = pow(dx, 2) + pow(dy, 2);
-      //dist2scaled = dist2 / combined_radius / combined_radius;
-      
-      // frad = force_constant * (pow(dist2scaled,3) - pow(dist2scaled,6));
-      frad = - force_constant / sqrt( dist2 + combined_radius * combined_radius);
-      
-      dr = sqrt(dist2);
-            
-      fx = dx/dr * frad;
-      fy = dy/dr * frad;
-      
-      prt.add_force(fx, fy);
+              combined_radius = 3.0*(er + prt.r);
+              dx = prt.x - ex;
+              dy = prt.y - ey;
+
+              dist2 = pow(dx, 2) + pow(dy, 2);
+              //dist2scaled = dist2 / combined_radius / combined_radius;
+
+              // frad = force_constant * (pow(dist2scaled,3) - pow(dist2scaled,6));
+              frad = - force_constant / sqrt( dist2 + combined_radius * combined_radius);
+
+              dr = sqrt(dist2);
+
+              fx = dx/dr * frad;
+              fy = dy/dr * frad;
+
+              prt.add_force(fx, fy);
+            }
+          }
+        }
+      }
     }
   }
 
