@@ -12,20 +12,21 @@ class ParticleCollection {
 
   void add_emitter_force(SoundEmittorCollection sec) {
     if (sec.size()>0) {
-      for (int qx=-1; qx<=1; qx=qx+1) {
-        for (int qy=-1; qy<=1; qy=qy+1) {
+      for (int qx=-5; qx<=5; qx=qx+1) {
+        for (int qy=-5; qy<=5; qy=qy+1) {
           for (int j=0; j<sec.size(); j++) {
             SoundEmitter emi = sec.getEmitter(j);
             float force_constant = 0.1;
             float ex, ey, er;
             ex = emi.x + width*qx;
             ey = emi.y + height*qy;
+            //println(qx,qy, ":", ex, ey);
             er = emi.r;
             for (int i=0; i<p.size(); i++) {
               Particle prt = p.get(i);
               float fx, fy, frad, combined_radius, dist2, dist2scaled, dx, dy, dr;
 
-              combined_radius = 3.0*(er + prt.r);
+              combined_radius = 1.2*(er + prt.r);
               dx = prt.x - ex;
               dy = prt.y - ey;
 
@@ -57,7 +58,7 @@ class ParticleCollection {
       prt.move(dt);
     }
   }
-  void draw(float dt) {
+  void draw() {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
       prt.draw();
