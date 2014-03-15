@@ -18,13 +18,16 @@ void setup() {
 }
 
 void draw() {
-  background(0);
-  float dt = t-millis();
-  t = millis();
-
-  pc.add_emitter_force(soundEmitters);
-  pc.move(dt);
-  pc.draw(dt);
+  //background(0);
+  fill(0,10);
+  rect(0,0,width-1,height-1);
+  for (int repeat=0; repeat<100; repeat++) {
+    float dt = t-millis();
+    t = millis();
+    pc.add_emitter_force(soundEmitters);
+    pc.move(dt);
+  }
+  pc.draw();
   soundEmitters.draw();
   
   snd.checkCollisions();
@@ -41,3 +44,4 @@ void mousePressed() {
     soundEmitters.addEmitter(mouseX, mouseY);
   }
 }
+
