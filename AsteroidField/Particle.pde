@@ -7,9 +7,14 @@ class Particle
   public Particle() 
   {
     x = random(800);
-    y = random(800);
-    vx = random(-10, 10);
-    vy = random(-10, 10);
+    y = random(600);
+    vx = random(-1, 1);
+    vy = random(-1, 1);
     r = 10;
+  }
+  
+  void move(float dt){
+    x = (x+dt*vx)%800;
+    y = (y+dt*vy)%600;
   }
 }

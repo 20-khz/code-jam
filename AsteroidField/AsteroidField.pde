@@ -1,5 +1,5 @@
 Particle p;
-
+float t = millis();
 void setup() {
   size(800, 600);
   background(0);
@@ -7,5 +7,9 @@ void setup() {
 }
 
 void draw() {
-    print(p.x);
+  float dt = t-millis();
+  t = millis();
+  
+   p.move(dt);
+   ellipse(p.x, p.y, p.r, p.r);
 }
