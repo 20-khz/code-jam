@@ -7,10 +7,9 @@ void setup() {
   background(0);
 
   pc = new ParticleCollection();
-  pc.addParticle();
-  pc.addParticle();
-  pc.addParticle();
-  pc.addParticle();
+  for (int i=0; i<10; i++) {
+    pc.addParticle();
+  }
 }
 
 void draw() {
