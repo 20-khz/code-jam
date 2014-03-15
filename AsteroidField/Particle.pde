@@ -9,8 +9,10 @@ class Particle
   {
     x = random(width);
     y = random(height);
-    vx = random(-1, 1);
-    vy = random(-1, 1);
+    float r_angle = random(TAU);
+    float r_speed = random(0.0, 2.0);
+    vx = r_speed  * cos(r_angle);
+    vy = r_speed * sin(r_angle);
     ax = ay = 0.0; 
     r = random(2, 5);
   }
