@@ -64,5 +64,11 @@ class ParticleCollection {
       prt.draw();
     }
   }
+  int size() {
+    return p.size();
+  }
+  Particle get(int which) {
+    return p.get(which);
+  }
 }
 
