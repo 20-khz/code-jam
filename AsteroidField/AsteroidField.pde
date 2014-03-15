@@ -21,6 +21,7 @@ void draw() {
   float dt = t-millis();
   t = millis();
 
+  pc.add_emitter_force(soundEmitters.soundEmitters.get(0));
   pc.move(dt);
   pc.draw(dt);
   soundEmitters.draw();

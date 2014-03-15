@@ -9,13 +9,42 @@ class ParticleCollection {
   void destroyParticle(int which) {
     p.remove(which);
   }
-  
+
+  void add_emitter_force(SoundEmitter emi) {
+    float force_constant = 0.1;
+    float ex, ey, er;
+    ex = emi.x;
+    ey = emi.y;
+    er = emi.r;
+    for (int i=0; i<p.size(); i++) {
+      Particle prt = p.get(i);
+      float fx, fy, frad, combined_radius, dist2, dist2scaled, dx, dy, dr;
+
+      combined_radius = 3.0*(er + prt.r);
+      dx = prt.x - ex;
+      dy = prt.y - ey;
+      
+      dist2 = pow(dx, 2) + pow(dy, 2);
+      //dist2scaled = dist2 / combined_radius / combined_radius;
+      
+      // frad = force_constant * (pow(dist2scaled,3) - pow(dist2scaled,6));
+      frad = - force_constant / sqrt( dist2 + combined_radius * combined_radius);
+      
+      dr = sqrt(dist2);
+            
+      fx = dx/dr * frad;
+      fy = dy/dr * frad;
+      
+      prt.add_force(fx, fy);
+    }
+  }
+
   void move(float dt) {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
       float fx, fy;
-      fy = -0.00005 * (prt.y-height/2); 
-      prt.add_force(0, fy);
+      fy = -0.000005 * (prt.y-height/2); 
+      //prt.add_force(0, fy);
       prt.move(dt);
     }
   }
@@ -23,7 +52,7 @@ class ParticleCollection {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
       prt.draw();
-    } 
+    }
   }
 }
-  
+
