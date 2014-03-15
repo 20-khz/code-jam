@@ -27,10 +27,18 @@ class SoundEmittorCollection
     for (int i = 0; i < soundEmitters.size(); i++) {
       soundEmitters.get(i).draw();
     } 
-  }
-  
+  }  
   int size() {
     return soundEmitters.size();
+  }
+  void clicked(float x, float y) {
+    for (int i=0; i < size(); i++) {
+      if (getEmitter(i).intersects(x, y)) {
+        destroyEmitter(i);
+        return;
+      }
+    }
+    addEmitter(x, y);
   }
 }
   

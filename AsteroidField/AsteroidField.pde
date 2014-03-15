@@ -5,7 +5,7 @@ Sonification snd;
 float t = millis();
 
 void setup() {
-  size(800, 600);
+  size(800, 600, P2D);
   background(0);
 
   pc = new ParticleCollection();
@@ -35,13 +35,7 @@ void draw() {
 
 void mousePressed() {
   if(mouseButton == LEFT) {
-    for(int i=0; i < soundEmitters.size(); i++) {
-      if (soundEmitters.getEmitter(i).intersects(float(mouseX), float(mouseY))) {
-        soundEmitters.destroyEmitter(i);
-        return;
-      }
-    }
-    soundEmitters.addEmitter(mouseX, mouseY);
+    soundEmitters.clicked(mouseX, mouseY);
   }
 }
 
