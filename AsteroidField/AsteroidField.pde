@@ -20,6 +20,7 @@ void draw() {
   float dt = t-millis();
   t = millis();
 
+  pc.move(dt);
   pc.draw(dt);
   soundEmitters.draw();
 }
