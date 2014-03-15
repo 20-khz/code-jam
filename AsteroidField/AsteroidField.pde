@@ -1,15 +1,23 @@
-Particle p;
+ParticleCollection pc;
+
 float t = millis();
+
 void setup() {
   size(800, 600);
   background(0);
-  p = new Particle();
+
+  pc = new ParticleCollection();
+  pc.addParticle();
+  pc.addParticle();
+  pc.addParticle();
+  pc.addParticle();
 }
 
 void draw() {
+  background(0);
   float dt = t-millis();
   t = millis();
-  
-   p.move(dt);
-   ellipse(p.x, p.y, p.r, p.r);
+
+  pc.draw(dt);
 }
+
