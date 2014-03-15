@@ -1,12 +1,20 @@
 class ParticleCollection {
   ArrayList<Particle> p;
+  Sonification snd;
+  int particleId = 0;
   ParticleCollection() {
     p = new ArrayList<Particle>();
   }
+  void setSnd(Sonification snd) {
+    this.snd = snd;
+  }
   void addParticle() {
-    p.add(new Particle());
+    p.add(new Particle(particleId));
+    snd.addParticle(particleId);
+    particleId++;
   }
   void destroyParticle(int which) {
+    snd.destroyParticle(p.get(which).id);
     p.remove(which);
   }
 

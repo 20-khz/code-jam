@@ -18,22 +18,35 @@ class Sonification {
     for (int i=0; i<pc.size(); i++) {
       Particle prt = pc.get(i);
       for (int j=0; j<s.size(); j++) {
-        println(i, j);
         SoundEmitter se = s.getEmitter(j);
-        if (dist(prt.x, prt.y, se.x, se.y) < se.r) {
+        float d = dist(prt.x, prt.y, se.x, se.y);
+        if (d < se.r) {
           // test code
           fill(#FF0000);
           ellipse(se.x, se.y, 10, 10);
           noFill();
 
-          /*
-           OscMessage msg = new OscMessage("/starhit");
-           msg.add(map(p[i].y, 0, height, 0, 1));
-           osc.send(msg, supercollider);
-           */
+
+          OscMessage msg = new OscMessage("/playParticle");
+          msg.add(prt.id);
+          msg.add(0); // angle
+          msg.add(map(d, 0, se.r, 0, 1)); // dist
+          msg.add(0); // velo
+          msg.add(j);
+          osc.send(msg, supercollider);
         }
       }
     }
+  }
+  void addParticle(int particleId) {
+    OscMessage msg = new OscMessage("/addParticle");
+    msg.add(particleId);
+    osc.send(msg, supercollider);
+  }
+  void destroyParticle(int particleId) {
+    OscMessage msg = new OscMessage("/destroyParticle");
+    msg.add(particleId);
+    osc.send(msg, supercollider);
   }
 }
 

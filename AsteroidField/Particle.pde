@@ -1,5 +1,6 @@
 class Particle 
 {
+  int id;
   float x, y;
   float vx, vy;
   float ax, ay;
@@ -9,8 +10,9 @@ class Particle
   
   ParticlePoint[] points;
 
-  public Particle() 
+  public Particle(int id) 
   {
+    this.id = id;
     x = random(width);
     y = random(height);
     mass = 1.0;
@@ -80,7 +82,7 @@ class Particle
     }
     x = (width + x+dt*vx)%width;
     y = (height + y+dt*vy)%height;
-    println(ax);
+
     ax = ay = 0.0;
   }
 }
