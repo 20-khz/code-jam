@@ -1,4 +1,5 @@
 ParticleCollection pc;
+SoundEmittorCollection soundEmitters; //<>//
 
 float t = millis();
 
@@ -11,6 +12,9 @@ void setup() {
   pc.addParticle();
   pc.addParticle();
   pc.addParticle();
+  
+  soundEmitters = new SoundEmittorCollection();
+  soundEmitters.addEmitter();
 }
 
 void draw() {
@@ -19,5 +23,5 @@ void draw() {
   t = millis();
 
   pc.draw(dt);
+  soundEmitters.draw();
 }
-
