@@ -9,7 +9,8 @@ void setup() {
   background(0);
 
   pc = new ParticleCollection();
-  for (int i=0; i<2; i++) {
+  
+  for (int i=0; i<10; i++) {
     pc.addParticle();
   }
   
@@ -19,6 +20,8 @@ void setup() {
 
 void draw() {
   //background(0);
+  fill(0,50);
+  rect(0,0,width,height);
   fill(0,10);
   rect(0,0,width-1,height-1);
   for (int repeat=0; repeat<100; repeat++) {
@@ -38,4 +41,3 @@ void mousePressed() {
     soundEmitters.clicked(mouseX, mouseY);
   }
 }
-
