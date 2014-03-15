@@ -11,3 +11,5 @@ Processing sends the distance to the center of the circle to SuperCollider as a 
 We could add particle creator objects and particle destructor objects. It would be nice to drag the forces and emmitters, destroyers.
 
 The look should be a bit like asteroids (retro look). White lines on black background.
+
+I was here and I commited.
