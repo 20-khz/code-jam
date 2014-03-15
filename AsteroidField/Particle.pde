@@ -31,8 +31,8 @@ class Particle
   }
 
   void move(float dt) {
-    vx = vx+dt*ax;
-    vy = vy+dt*ay;
+    vx = (vx+dt*ax)*0.9999;
+    vy = (vy+dt*ay)*0.9999;
     x = (width + x+dt*vx)%width;
     y = (height + y+dt*vy)%height;
     ax = ay = 0.0;
