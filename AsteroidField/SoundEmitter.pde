@@ -18,7 +18,6 @@ class SoundEmitter
   }
   
   boolean intersects(float x, float y) {
-    return ( (this.x - r < x && x < this.x + r) &&
-        (this.y - r < x && y < this.x + r));
-  }
+    return dist(this.x, this.y, x, y) < r;
+  }  
 }
