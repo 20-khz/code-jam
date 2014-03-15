@@ -2,7 +2,8 @@ class Particle
 {
   float x, y;
   float vx, vy;
-  float ax, ay; 
+  float ax, ay;
+  float mass; 
   float r;
 
   public Particle() 
@@ -16,6 +17,12 @@ class Particle
     ax = ay = 0.0; 
     r = random(2, 5);
   }
+  
+  void add_force(float fx, float fy) {
+    ax = ax + fx/mass;
+    ay = ay + fy/mass;
+  }
+  
   void draw() {
     stroke(255);
     noFill();
@@ -27,6 +34,7 @@ class Particle
     vy = vy+dt*ay;
     x = (width + x+dt*vx)%width;
     y = (height + y+dt*vy)%height;
+    ax = ay = 0.0;
   }
 }
 
