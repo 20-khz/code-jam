@@ -50,13 +50,11 @@ class Particle
     stroke(255);
     noFill();
     
- pushMatrix();
     beginShape();
     for(int i = 0; i < points.length; i++) {
       vertex(points[i].x + this.x, points[i].y + this.y);
     }
-    endShape(CLOSE);
-    popMatrix();   
+    endShape(CLOSE);   
     //ellipse(x, y, r, r);
   }
 

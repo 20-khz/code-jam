@@ -9,7 +9,7 @@ void setup() {
 
   pc = new ParticleCollection();
 
-  for (int i=0; i<1; i++) {
+  for (int i=0; i<10; i++) {
     pc.addParticle();
   }
   soundEmitters = new SoundEmittorCollection();
@@ -17,7 +17,7 @@ void setup() {
 
 void draw() {
   //background(0);
-  fill(0,10);
+  fill(0,50);
   rect(0,0,width,height);
   for (int repeat=0; repeat<100; repeat++) {
     float dt = t-millis();
@@ -40,4 +40,3 @@ void mousePressed() {
     soundEmitters.addEmitter(mouseX, mouseY);
   }
 }
-
