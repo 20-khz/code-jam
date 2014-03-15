@@ -13,7 +13,6 @@ void setup() {
     pc.addParticle();
   }
   soundEmitters = new SoundEmittorCollection();
-  soundEmitters.addEmitter();
 }
 
 void draw() {
@@ -23,4 +22,10 @@ void draw() {
 
   pc.draw(dt);
   soundEmitters.draw();
+}
+
+void mousePressed() {
+  if(mouseButton == LEFT) {
+    soundEmitters.addEmitter(mouseX, mouseY);
+  }
 }

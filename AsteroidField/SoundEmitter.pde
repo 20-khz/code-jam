@@ -3,10 +3,10 @@ class SoundEmitter
   float x, y;
   float r;
   
-  SoundEmitter()
+  SoundEmitter(float x, float y)
   {
-    x = random(width);
-    y = random(height);
+    this.x = x;
+    this.y = y;
     r = 30;
   }
   

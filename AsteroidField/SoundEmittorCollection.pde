@@ -7,9 +7,9 @@ class SoundEmittorCollection
     soundEmitters = new ArrayList<SoundEmitter>();
   }
   
-  void addEmitter() 
+  void addEmitter(float x, float y) 
   {
-    soundEmitters.add(new SoundEmitter());
+    soundEmitters.add(new SoundEmitter(x, y));
   }
   
   void destroyParticle(int which) 
