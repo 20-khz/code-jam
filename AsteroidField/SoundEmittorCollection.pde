@@ -12,9 +12,14 @@ class SoundEmittorCollection
     soundEmitters.add(new SoundEmitter(x, y));
   }
   
-  void destroyParticle(int which) 
+  void destroyEmitter(int which) 
   {
     soundEmitters.remove(which);
+  }
+  
+  SoundEmitter getEmitter(int which)
+  {
+     return soundEmitters.get(which); 
   }
   
   void draw() 
@@ -22,6 +27,10 @@ class SoundEmittorCollection
     for (int i = 0; i < soundEmitters.size(); i++) {
       soundEmitters.get(i).draw();
     } 
+  }
+  
+  int size() {
+    return soundEmitters.size();
   }
 }
   
