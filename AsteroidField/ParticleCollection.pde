@@ -11,8 +11,12 @@ class ParticleCollection {
   }
   void draw(float dt) {
     for (int i=0; i<p.size(); i++) {
-      p.get(i).move(dt);
-      p.get(i).draw();
+      Particle prt = p.get(i);
+      float fx, fy;
+      fy = -0.00005 * (prt.y-height/2); 
+      prt.add_force(0, fy);
+      prt.move(dt);
+      prt.draw();
     } 
   }
 }
