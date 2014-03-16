@@ -68,8 +68,8 @@ class ParticleCollection {
   void move(float dt) {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
-      float fx, fy;
-      fy = -0.000005 * (prt.y-height/2); 
+      //float fx, fy;
+      //fy = -0.000005 * (prt.y-height/2); 
       //prt.add_force(0, fy);
       prt.move(dt);
     }
