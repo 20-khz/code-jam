@@ -1,5 +1,7 @@
 Sound game.
 
+(initial description, to be updated to match what we did)
+
 Our canvas has visible vectors that act as wind.
 The wind moves particles.
 We drop the particles in the screen with our mouse.
