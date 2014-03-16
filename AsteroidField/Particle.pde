@@ -4,6 +4,7 @@ class Particle
   float x, y;
   float vx, vy;
   float ax, ay;
+  float vmax;
   float mass; 
   float r;
   float angle, angleInc;
@@ -22,10 +23,11 @@ class Particle
     vy = r_speed * sin(r_angle);
     ax = ay = 0.0; 
     r = random(2, 5);
-    
+    vmax = random(0.05, 0.3);
+
     angle = random(TAU);
-    dangle = randomGaussian() / 5;
-    
+    angleInc = randomGaussian() / 5;
+
     playing = false;
 
     // Build the particle co-ordinates
@@ -74,11 +76,11 @@ class Particle
      points[i] = new ParticlePoint(x, y);
    }
   }
-  
+
   void draw() {
     stroke(255);
     noFill();
-    
+
     pushMatrix();
     translate(x, y);
     rotate(angle);
@@ -90,15 +92,12 @@ class Particle
     popMatrix();   
     //ellipse(x, y, r, r);
     
-    angle += dangle;
   }
-
   void move(float dt) {
     vx = (vx+dt*ax);
     vy = (vy+dt*ay);
     float v2 = vx*vx + vy*vy;
-    float vmax2 = 0.3;
-    float scale = sqrt(v2/vmax2);
+    float scale = sqrt(v2/vmax);
     if (scale>1.0) {
       vx = vx / scale ;
       vy = vy / scale;
@@ -107,5 +106,8 @@ class Particle
     y = (height + y+dt*vy)%height;
 
     ax = ay = 0.0;
+
+    angle += angleInc;
   }
 }
+
