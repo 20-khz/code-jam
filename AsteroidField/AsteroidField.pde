@@ -22,6 +22,7 @@ void setup() {
 void draw() {
   background(0);
   //fill(0,10);
+  stroke(255);
   rect(0,0,width-1,height-1);
 
   for (int repeat=0; repeat<1; repeat++) {
