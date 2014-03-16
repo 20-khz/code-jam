@@ -6,16 +6,15 @@ class Particle
   float ax, ay;
   float mass; 
   float r;
-  float angle, dangle;
+  float angle, angleInc;
   boolean playing;
-  
+
   ParticlePoint[] points;
 
   public Particle(int id) 
   {
     this.id = id;
-    x = random(width);
-    y = random(height);
+    setRandomPos();
     mass = 1.0;
     float r_angle = random(TAU);
     float r_speed = random(0.02, 0.3);
@@ -28,18 +27,39 @@ class Particle
     dangle = randomGaussian() / 5;
     
     playing = false;
-    
+
     // Build the particle co-ordinates
     createParticle();
   }
-   
+
   void add_force(float fx, float fy) {
     ax = ax + fx/mass;
     ay = ay + fy/mass;
   }
-  
-    
-  
+
+  void setRandomPos() {
+    int where = int(random(4));
+    switch(where) {
+    case 0:
+      x = 0;
+      y = random(height);
+      break;
+    case 1:
+      x = width;
+      y = random(height);
+      break;
+    case 2:
+      x = random(width);
+      y = 0;
+      break;
+    case 3:
+      x = random(width);
+      y = height;
+      break;
+    }
+  }  
+
+
   void createParticle() {
    points = new ParticlePoint[int(random(3, 7))];
   
