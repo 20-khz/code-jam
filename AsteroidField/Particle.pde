@@ -63,18 +63,18 @@ class Particle
 
 
   void createParticle() {
-   points = new ParticlePoint[int(random(3, 7))];
-  
-   int angle = 0;
-   int angleIncrement = 360/points.length;
-     
-   for(int i = 0; i < points.length; i++) {
-     
-     float x = sin(radians(angle)) * (r * random(5));
-     float y = cos(radians(angle)) * (r * random(5));
-     angle += angleIncrement;
-     points[i] = new ParticlePoint(x, y);
-   }
+    points = new ParticlePoint[int(random(3, 7))];
+
+    int angle = 0;
+    int angleIncrement = 360/points.length;
+
+    for (int i = 0; i < points.length; i++) {
+
+      float x = sin(radians(angle)) * (r * random(5));
+      float y = cos(radians(angle)) * (r * random(5));
+      angle += angleIncrement;
+      points[i] = new ParticlePoint(x, y);
+    }
   }
 
   void draw() {
@@ -84,14 +84,24 @@ class Particle
     pushMatrix();
     translate(x, y);
     rotate(angle);
+    if (playing) {
+      fill(255, 160);
+      stroke(255);
+    } 
+    else {
+      noFill();
+      stroke(255, 100);
+    }  
+    drawShape();    
+    popMatrix();
+  }
+
+  private void drawShape() {
     beginShape();
-    for(int i = 0; i < points.length; i++) {
+    for (int i = 0; i < points.length; i++) {
       vertex(points[i].x, points[i].y);
     }
     endShape(CLOSE);
-    popMatrix();   
-    //ellipse(x, y, r, r);
-    
   }
   void move(float dt) {
     vx = (vx+dt*ax);
