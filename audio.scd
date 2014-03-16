@@ -42,7 +42,7 @@ OSCdef('playParticle', {
     var dist = msg[3];
     var velo = msg[4];
     var emitterId = msg[5];
-    q.particles[particleId].set(\gate, 1, \ang, ang, \dist, dist, \velo, velo, \baseFrq, (switch(emitterId%3,0,0,1,5,2,7)+(emitterId/3*12)).midicps);
+    q.particles[particleId].set(\gate, 1, \ang, ang, \dist, dist, \velo, velo, \baseFrq, (switch(emitterId%3,0,0,1,5,2,9)+(emitterId/3*12)).midicps);
 }, "/playParticle");
 
 // OSC /muteParticle ID
