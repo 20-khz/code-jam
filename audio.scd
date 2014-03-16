@@ -29,8 +29,7 @@ OSCdef('addParticle', {
 OSCdef('destroyParticle', {
     arg msg;
     var particleId = msg[1];
-    msg.postln;
-    q.particle[particleId].set(\gate, 0);
+    q.particles[particleId].set(\gate, 0);
     q.particles.removeAt(particleId);
 }, "/destroyParticle");
 
@@ -51,11 +50,4 @@ OSCdef('muteParticle', {
     var particleId = msg[1];
     q.particles[particleId].set(\dist, 1);
 }, "/muteParticle");
-
-// OSC /quiet
-OSCdef('quiet', {
-    // make synths quiet without deleting them
-    q.particles.do({ |i| i.set(\dist, 1); });
-}, "/quiet");
 )
-x = (switch(emitterId%3,0,0,1,5,2,7)+(emitterId/3*12));

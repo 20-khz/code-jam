@@ -13,9 +13,17 @@ class ParticleCollection {
     snd.addParticle(particleId);
     particleId++;
   }
-  void destroyParticle(int which) {
-    snd.destroyParticle(p.get(which).id);
-    p.remove(which);
+  void destroyParticle() {
+    int which = p.size() - 1;
+    if(which >= 0) {
+      snd.destroyParticle(p.get(which).id);
+      p.remove(which);
+    }
+  }
+  void destroyAll() {
+    while(p.size() > 0) {
+      destroyParticle();
+    }
   }
 
   void add_emitter_force(SoundEmittorCollection sec) {

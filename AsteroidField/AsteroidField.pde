@@ -14,9 +14,9 @@ void setup() {
   snd = new Sonification(pc, soundEmitters);
   pc.setSnd(snd);  
 
-  for (int i=0; i<7; i++) {
-    pc.addParticle();
-  }
+  pc.addParticle();
+  
+  println("+ to add, - to remove, q for exit");
 }
 
 void draw() {
@@ -42,8 +42,15 @@ void mousePressed() {
   }
 }
 void keyPressed() {
-  if (key==ESC) {
-    snd.quiet();
+  if (key == ESC) {
+    pc.destroyAll();
+    exit();
+  }
+  if (key == '+') {
+    pc.addParticle();
+  }
+  if (key == '-') {
+    pc.destroyParticle();
   }
 }
 
