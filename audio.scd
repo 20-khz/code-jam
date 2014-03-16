@@ -6,11 +6,12 @@ q.particles = ();
 
 SynthDef('jamsynth', {
     arg gate=0, baseFrq=200, ang=0, dist=0, velo=0, pid=0, filterFrq=50;
-    var env = EnvGen.kr(Env.adsr(0.01, 0, 1, 0.01), gate, doneAction:2);
-    var lfo = LFSaw.kr(2.pow(pid%4), 1, -0.5, 0.5);
+    var env = EnvGen.kr(Env.adsr(0.01, 0, 1, 0.2), gate, doneAction:2);
+    var lfo1 = LFSaw.kr(2.pow(pid%4), 1, -0.4, 0.5);
+    var lfo2 = SinOsc.kr(pid+20/2, mul:0.05, add:1);
     var d = Lag.kr(dist, 0.05);
     var frq = baseFrq*(1+d-10);
-    var sound = (LFSaw.ar([frq, frq*1.03]) + LFSaw.ar(frq*0.251)) * (1-d) * lfo;
+    var sound = (LFSaw.ar([frq, frq*1.03]*lfo2) * SinOsc.ar(frq*0.2501)) * (1-d) * lfo1;
     sound = RLPF.ar(sound, filterFrq - (d * 20), 0.5);
     Out.ar(0, sound * env * 0.2);
 }).add;
