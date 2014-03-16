@@ -20,11 +20,11 @@ class ParticleCollection {
 
   void add_emitter_force(SoundEmittorCollection sec) {
     if (sec.size()>0) {
-      for (int qx=-5; qx<=5; qx=qx+1) {
-        for (int qy=-5; qy<=5; qy=qy+1) {
+      for (int qx=-5; qx<=5; qx+=1) {
+        for (int qy=-5; qy<=5; qy+=1) {
           for (int j=0; j<sec.size(); j++) {
             SoundEmitter emi = sec.getEmitter(j);
-            float force_constant = 0.1;
+            float force_constant = 0.05;
             float ex, ey, er;
             ex = emi.x + width*qx;
             ey = emi.y + height*qy;

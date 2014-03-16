@@ -17,6 +17,7 @@ class Sonification {
   void checkCollisions() {
     for (int i=0; i<pc.size(); i++) {
       Particle prt = pc.get(i);
+      boolean stillPlaying = false;
       for (int j=0; j<s.size(); j++) {
         SoundEmitter se = s.getEmitter(j);
         float d = dist(prt.x, prt.y, se.x, se.y);
@@ -28,7 +29,15 @@ class Sonification {
           msg.add(0); // velo
           msg.add(j);
           osc.send(msg, supercollider);
+          prt.playing = true;
+          stillPlaying = true;
         }
+      }
+      if (!stillPlaying && prt.playing) {
+        OscMessage msg = new OscMessage("/muteParticle");
+        msg.add(prt.id);
+        osc.send(msg, supercollider);
+        prt.playing = false;
       }
     }
   }

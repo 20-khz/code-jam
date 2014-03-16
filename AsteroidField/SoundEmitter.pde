@@ -7,7 +7,7 @@ class SoundEmitter
   {
     this.x = x;
     this.y = y;
-    r = random(20, 150);
+    r = random(20, 200);
   }
 
   void draw() 

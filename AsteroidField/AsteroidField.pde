@@ -14,7 +14,7 @@ void setup() {
   snd = new Sonification(pc, soundEmitters);
   pc.setSnd(snd);  
 
-  for (int i=0; i<4; i++) {
+  for (int i=0; i<7; i++) {
     pc.addParticle();
   }
 }
@@ -41,9 +41,9 @@ void mousePressed() {
     soundEmitters.clicked(mouseX, mouseY);
   }
 }
-
-void exit() {
-  snd.quiet();
-  super.exit();
+void keyPressed() {
+  if (key==ESC) {
+    snd.quiet();
+  }
 }
 

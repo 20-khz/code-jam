@@ -7,6 +7,7 @@ class Particle
   float mass; 
   float r;
   float angle, dangle;
+  boolean playing;
   
   ParticlePoint[] points;
 
@@ -24,7 +25,9 @@ class Particle
     r = random(2, 5);
     
     angle = random(TAU);
-    dangle = randomGaussian() / 3;
+    dangle = randomGaussian() / 5;
+    
+    playing = false;
     
     // Build the particle co-ordinates
     createParticle();
