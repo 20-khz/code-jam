@@ -7,9 +7,9 @@ class SoundEmittorCollection
     soundEmitters = new ArrayList<SoundEmitter>();
   }
   
-  void addEmitter(float x, float y) 
+  void addEmitter(float x, float y, float fc) 
   {
-    soundEmitters.add(new SoundEmitter(x, y));
+    soundEmitters.add(new SoundEmitter(x, y, fc));
   }
   
   void destroyEmitter(int which) 
@@ -31,14 +31,14 @@ class SoundEmittorCollection
   int size() {
     return soundEmitters.size();
   }
-  void clicked(float x, float y) {
+  void clicked(float x, float y, float fc) {
     for (int i=0; i < size(); i++) {
       if (getEmitter(i).intersects(x, y)) {
         destroyEmitter(i);
         return;
       }
     }
-    addEmitter(x, y);
+    addEmitter(x, y, fc);
   }
 }
   

@@ -42,7 +42,10 @@ void draw() {
 
 void mousePressed() {
   if (mouseButton == LEFT) {
-    soundEmitters.clicked(mouseX, mouseY);
+    soundEmitters.clicked(mouseX, mouseY, 1.0);
+  }
+  if (mouseButton == RIGHT) {
+    soundEmitters.clicked(mouseX, mouseY, -1.0);
   }
 }
 void keyPressed() {
