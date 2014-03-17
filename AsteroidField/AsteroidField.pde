@@ -1,10 +1,12 @@
 ParticleCollection pc;
 SoundEmittorCollection soundEmitters;
 Sonification snd;
+DisposeHandler dh;
 
 float t = millis();
 
 void setup() {
+  dh = new DisposeHandler(this);
   size(800, 600, P2D);
   background(0);
 
@@ -44,7 +46,6 @@ void mousePressed() {
 }
 void keyPressed() {
   if (key == ESC) {
-    pc.destroyAll();
     exit();
   }
   if (key == '+') {
@@ -55,3 +56,12 @@ void keyPressed() {
   }
 }
 
+public class DisposeHandler {
+   DisposeHandler(PApplet pa) {
+     pa.registerMethod("dispose", this);
+   } 
+  
+  public void dispose() {
+    pc.destroyAll();
+  }
+}
