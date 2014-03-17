@@ -45,9 +45,6 @@ void mousePressed() {
   }
 }
 void keyPressed() {
-  if (key == ESC) {
-    exit();
-  }
   if (key == '+') {
     pc.addParticle();
   }

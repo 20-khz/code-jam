@@ -1,6 +1,8 @@
-Sound game.
+#Asteroid Field
 
-(initial description, to be updated to match what we did)
+Video: http://vimeo.com/89228444
+
+(This is the initial description, should be updated to match what we actually did)
 
 Our canvas has visible vectors that act as wind.
 The wind moves particles.
@@ -14,4 +16,3 @@ We could add particle creator objects and particle destructor objects. It would 
 
 The look should be a bit like asteroids (retro look). White lines on black background.
 
-I was here and I commited.
