@@ -125,6 +125,14 @@ class ParticleCollection {
       Particle prt = p.get(i);
       prt.draw();
     }
+    
+    for (int j=0; j<springs.size(); j++){
+       Particle prtA, prtB;
+       Spring spring = springs.get(j);
+      prtA = p.get(spring.particle1);
+      prtB = p.get(spring.particle2);
+      line(prtA.x, prtA.y, prtB.x, prtB.y);
+    }
   }
   int size() {
     return p.size();
