@@ -31,6 +31,7 @@ void draw() {
     float dt = t-millis();
     t = millis();
     pc.add_emitter_force(soundEmitters);
+    pc.applySpringForces();
     pc.move(dt);
   }
   pc.draw();
@@ -53,6 +54,26 @@ void keyPressed() {
   }
   if (key == '-') {
     pc.destroyParticle();
+  }
+  if (key == 's') {
+    int indx1, indx2;
+    indx1 = pc.particleId;
+    pc.addParticle();
+    indx2 = pc.particleId;
+    pc.addParticle();
+    pc.addSpring(indx1, indx2);
+  }
+  if (key == 'd') {
+    int indx1, indx2, indx3;
+    indx1 = pc.particleId;
+    pc.addParticle();
+    indx2 = pc.particleId;
+    pc.addParticle();
+    indx3 = pc.particleId;
+    pc.addParticle();
+    pc.addSpring(indx1, indx2);
+    pc.addSpring(indx2, indx3);
+    pc.addSpring(indx3, indx1);
   }
 }
 
