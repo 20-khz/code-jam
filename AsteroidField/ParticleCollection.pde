@@ -1,9 +1,12 @@
 class ParticleCollection {
   ArrayList<Particle> p;
+  ArrayList<Spring> springs;
+  
   Sonification snd;
   int particleId = 0;
   ParticleCollection() {
     p = new ArrayList<Particle>();
+    springs = new ArrayList<Spring>();
   }
   void setSnd(Sonification snd) {
     this.snd = snd;
@@ -18,6 +21,8 @@ class ParticleCollection {
     if(which >= 0) {
       snd.destroyParticle(p.get(which).id);
       p.remove(which);
+      destroySpringsWithParticle(which);
+      particleId--;
     }
   }
   void destroyAll() {
@@ -65,6 +70,47 @@ class ParticleCollection {
     }
   }
 
+  void addSpring(int index1, int index2) {
+      springs.add(new Spring(index1, index2, 0.0001, 120.0));
+  }
+
+  void applySpringForces(){
+     for (int i=0; i<springs.size(); i++){
+        Particle prtA, prtB;
+        Spring spring;
+        spring = springs.get(i);
+        float dx, dy, dist2, frad, dr, fx, fy;
+        
+        prtA = p.get(spring.particle1);
+        prtB = p.get(spring.particle2);
+        
+        dx = prtA.x - prtB.x;
+        dy = prtA.y - prtB.y;
+
+        dist2 = pow(dx, 2) + pow(dy, 2);
+        dr = sqrt(dist2);
+        frad = - spring.forceConstant * (dr-spring.equilibriumDistance);
+
+
+        fx = dx/dr * frad;
+        fy = dy/dr * frad;
+
+        prtA.add_force(fx, fy);
+        prtB.add_force(-fx, -fy);
+     } 
+  }
+  void destroySpringsWithParticle(float which){
+    IntList toDelete = new IntList();
+     for (int i=0; i<springs.size(); i++){
+        if (springs.get(i).particle1==which || springs.get(i).particle2==which){
+            toDelete.append(i);
+        }
+     } 
+     for (int j=toDelete.size()-1; j>=0; j--){
+         springs.remove(toDelete.get(j));
+     }
+  }
+
   void move(float dt) {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
@@ -78,6 +124,14 @@ class ParticleCollection {
     for (int i=0; i<p.size(); i++) {
       Particle prt = p.get(i);
       prt.draw();
+    }
+    
+    for (int j=0; j<springs.size(); j++){
+       Particle prtA, prtB;
+       Spring spring = springs.get(j);
+      prtA = p.get(spring.particle1);
+      prtB = p.get(spring.particle2);
+      line(prtA.x, prtA.y, prtB.x, prtB.y);
     }
   }
   int size() {
