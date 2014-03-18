@@ -36,6 +36,7 @@ void draw() {
     pc.applySpringForces();
     pc.move(dt);
     player.move(dt);
+    player.add_emitter_force(soundEmitters);
   }
   pc.draw();
   soundEmitters.draw();
@@ -105,7 +106,12 @@ void keyPressed() {
      player.turn(0.1); 
   }
 }
-
+void keyReleased(){
+ if (keyCode == UP){
+    player.disableBoost();
+ } 
+  
+}
 public class DisposeHandler {
   DisposeHandler(PApplet pa) {
     pa.registerMethod("dispose", this);
