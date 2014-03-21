@@ -69,6 +69,7 @@ class Particle
     int angleIncrement = 360/points.length;
 
     for (int i = 0; i < points.length; i++) {
+
       float x = sin(radians(angle)) * (r * random(5));
       float y = cos(radians(angle)) * (r * random(5));
       angle += angleIncrement;
@@ -84,11 +85,11 @@ class Particle
     translate(x, y);
     rotate(angle);
     if (playing) {
-      fill(#A8BAA9, 160);
+      fill(255, 160);
       stroke(255);
     } 
     else {
-      fill(#A8BAA9);
+      noFill();
       stroke(255, 100);
     }  
     drawShape();    

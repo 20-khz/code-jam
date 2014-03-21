@@ -3,7 +3,6 @@ class SoundEmitter
   float x, y;
   float r;
   float forceConstant;
-  
   SoundEmitter(float x, float y, float fc)
   {
     this.x = x;
@@ -16,10 +15,10 @@ class SoundEmitter
   {
     stroke(255);
     if (forceConstant > 0){    
-      fill(#B39C7D, 50); 
+    noFill();
     }
     else {
-      fill(#CFE5D1); 
+      fill(128); 
     }
     ellipse(x, y, r * 2, r * 2);
     noFill();
